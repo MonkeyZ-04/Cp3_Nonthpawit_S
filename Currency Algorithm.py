@@ -18,40 +18,45 @@ def menu_select():
 
 def currency_arverage():
     c = CurrencyRates()
-    x = int(input("Year: "))
-    y = int(input("month: "))
-    z = int(input("date: "))
-    a = int(input("Year: "))
-    b = int(input("month: "))
-    d = int(input("date: ")) + 1
-    start_date = date(x, y, z)
-    end_date = date(a, b, d)
+    select_currency = (input("Currency do u want : ")).upper()
+    convert_currency = (input("Convert with : ")).upper()
+    year_start = int(input("Year: "))
+    month_start = int(input("month: "))
+    day_start = int(input("date: "))
+    year_end = int(input("Year: "))
+    month_end = int(input("month: "))
+    day_end = int(input("date: ")) + 1
+    start_date = date(year_start, month_start, day_start)
+    end_date = date(year_end, month_end, day_end)
     numbers = 0
     for single_date in daterange(start_date, end_date):
         date_obj = datetime.combine(single_date, datetime.min.time())
-        value = c.get_rate('USD', 'THB', date_obj)
+        value = c.get_rate(select_currency, convert_currency, date_obj)
         total = single_date.strftime('%Y-%m-%d:'), value
         numbers += value
         print(total)
-    print("Average : ",numbers/(d-z))
+    print("Average : ",numbers/(day_end-day_start))
 
 def predict():
+    select_currency = (input("Currency do u want : ")).upper()
+    convert_currency = (input("Convert with : ")).upper()
     print("This process start at 1 mar 2021 cant predict year past")
     print("Available from 1 March 2021  onwards")
-    y = int(input("month: "))
-    z = int(input("date: ")) + 1
+    select_mont = int(input("month: "))
+    select_date = int(input("date: ")) + 1
+
     c = CurrencyRates()
 
     start_date = date(2021, 3, 1)
-    end_date = date(2021, y, z)
+    end_date = date(2021, select_mont, select_date)
     numbers = 0
     value = 0
 
     for single_date in daterange(start_date, end_date):
         date_obj = datetime.combine(single_date, datetime.min.time())
-        value = c.get_rate('USD', 'THB', date_obj)
+        value = c.get_rate(select_currency, convert_currency, date_obj)
         numbers += value
-    avr = numbers / (z - 1)
+    avr = numbers / (select_date - 1)
     per = abs(((avr*100 )/ value)-100)
     print("predict(percentage) :  +-", per)
     print("about               :+  ", (avr*(100+per))/100)
