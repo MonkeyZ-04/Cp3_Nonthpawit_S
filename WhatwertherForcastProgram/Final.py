@@ -91,14 +91,14 @@ label2.place(
     width = 173,
     height = 102)
 
-label3 = Label(window,font=("Gill Sans", 18, "bold"),fg="#F3F3F3",bg="#F25022")
-label3 .place(
+label4 = Label(window,font=("Gill Sans", 18, "bold"),fg="#F3F3F3",bg="#F25022")
+label4 .place(
     x = 585, y = 275,
     width = 52,
     height = 18)
 
-label4 = Label(window,font=("Gill Sans", 18, "bold"),fg="#F3F3F3",bg="#F25022")
-label4 .place(
+label3 = Label(window,font=("Gill Sans", 18, "bold"),fg="#F3F3F3",bg="#F25022")
+label3 .place(
     x = 582, y = 327,
     width = 52,
     height = 18)
